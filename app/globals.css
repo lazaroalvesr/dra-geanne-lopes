@@ -20,6 +20,21 @@
   to { transform: translateX(0); }
 }
 
+@keyframes menu-slide-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes overlay-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes overlay-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 .reveal-item { opacity: 0; transform: translateY(30px); }
 .reveal-section.is-visible .reveal-item { animation: reveal-item .75s cubic-bezier(.2,.7,.2,1) forwards; }
 .reveal-section.is-visible .reveal-delay-1 { animation-delay: .1s; }

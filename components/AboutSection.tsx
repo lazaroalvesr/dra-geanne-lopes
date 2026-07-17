@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function AboutSection() {
   return (
-    <section id="sobre" className="reveal-section grid bg-[#F3F3F3] px-6 py-20 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-[clamp(70px,10vw,160px)] md:px-[max(5vw,55px)] md:py-27">
+    <section id="sobre" className="reveal-section grid bg-[#F3F3F3] px-6 pb-20 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-[clamp(70px,10vw,160px)] md:px-[max(5vw,55px)] md:py-27">
       <div className="reveal-item relative flex min-h-90 items-end overflow-hidden rounded-2xl bg-[linear-gradient(145deg,#314057,#10243b_58%,#ba8c50)] p-7 text-white md:min-h-135 md:p-10.5">
         <div className="absolute -right-37.5 -top-40 h-120 w-120 rounded-full border border-white/35" />
         <div className="absolute -bottom-35 -left-20 h-70 w-70 rounded-full border border-white/35" />

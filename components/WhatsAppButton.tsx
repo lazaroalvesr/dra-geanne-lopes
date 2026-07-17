@@ -44,7 +44,7 @@ export function WhatsAppButton() {
       >
         Fale pelo WhatsApp
       </span>
-      <Image src="/assets/Whataspp-icon.png" alt="Ícone do WhatsApp" width={50} height={50} />
+      <Image src="/assets/Whataspp-icon.png" alt="Ícone do WhatsApp" width={40} height={40} />
     </Link>
   );
 }
