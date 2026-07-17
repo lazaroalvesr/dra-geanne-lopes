@@ -62,7 +62,7 @@ export default async function BlogPage() {
             className="h-auto w-50 xl:w-65"
           />
         </Link>
-        <Link href="/" className="text-[14px] font-semibold text-[#0A2723]">← Voltar ao site</Link>
+        <Link href="/" className="text-[14px] font-semibold text-[#0A2723]">← Página principal</Link>
       </header>
       <main className="min-h-[65vh] bg-[#F3F3F3] px-5.5 py-18 md:px-[max(6vw,40px)] md:py-25">
         <div className="mx-auto max-w-350">

@@ -128,7 +128,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             className={`h-auto w-50 xl:w-65`}
           />
         </Link>
-        <Link href="/" className="text-[14px] font-semibold text-[#0A2723]">← Voltar ao site</Link>
+        <Link href="/blog" className="text-[14px] font-semibold text-[#0A2723]">← Todos os artigos</Link>
       </header>
       <main className="bg-[#F3F3F3] px-5.5 py-15 md:px-[max(12vw,60px)] md:py-24">
         <article className="mx-auto max-w-220">
@@ -157,6 +157,12 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="max-w-175 space-y-6 font-['Playfair_Display'] text-[19px] leading-[1.7] text-[#0A2723] md:text-[22px]">
             <PortableTextContent value={post.body} />
           </div>
+          <section className="mt-12 max-w-175 rounded-xl border border-[#D1AD7D80] bg-[#FFFDF9] p-7 md:p-9" aria-label="Agende uma consulta">
+            <p className="mb-3 text-[11px] font-bold tracking-[1.3px] text-[#D1AD7D]">PRECISA DE ORIENTAÇÃO?</p>
+            <h2 className="mb-3 font-['Playfair_Display'] text-[28px] leading-[1.15] text-[#0A2723] md:text-[34px]">Converse sobre o seu caso.</h2>
+            <p className="mb-6 max-w-140 text-[16px] leading-[1.6] text-[#65706D]">Receba uma orientação jurídica cuidadosa e personalizada para entender os próximos passos.</p>
+            <Link href="/#contato" className="inline-flex items-center gap-3 rounded-lg bg-[#0A2723] px-5 py-3.5 text-[14px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#163d37]">Agende sua consulta <span aria-hidden="true">→</span></Link>
+          </section>
           <ShareButtons title={post.title} />
         </article>
         <RelatedArticles posts={relatedPosts} />
