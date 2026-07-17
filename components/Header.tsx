@@ -53,8 +53,16 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousDocumentOverflowX = document.documentElement.style.overflowX;
+
+    document.body.style.overflow = open ? 'hidden' : previousBodyOverflow;
+    document.documentElement.style.overflowX = open ? 'hidden' : previousDocumentOverflowX;
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflowX = previousDocumentOverflowX;
+    };
   }, [open]);
 
   useEffect(() => () => {
