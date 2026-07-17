@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
+const POSTS_PER_PAGE = 12;
+
 export type ArchivedPost = {
   id: string;
   title: string;
@@ -20,8 +22,22 @@ type BlogArchiveProps = {
 
 export function BlogArchive({ posts }: BlogArchiveProps) {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
+  const [currentPage, setCurrentPage] = useState(1);
   const categories = useMemo(() => ['Todos', ...Array.from(new Set(posts.map((post) => post.category).filter((category): category is string => Boolean(category))))], [posts]);
   const filteredPosts = selectedCategory === 'Todos' ? posts : posts.filter((post) => post.category === selectedCategory);
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const currentPosts = filteredPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
+  const pageNumbers = useMemo(() => {
+    const firstPage = Math.max(1, Math.min(currentPage - 2, totalPages - 4));
+    const lastPage = Math.min(totalPages, firstPage + 4);
+
+    return Array.from({ length: lastPage - firstPage + 1 }, (_, index) => firstPage + index);
+  }, [currentPage, totalPages]);
+
+  const selectCategory = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
 
   return (
     <>
@@ -33,7 +49,7 @@ export function BlogArchive({ posts }: BlogArchiveProps) {
             <button
               key={category}
               type="button"
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => selectCategory(category)}
               aria-pressed={selected}
               className={`cursor-pointer rounded-full border px-4 py-2 text-[13px] font-semibold transition-all duration-300 ${selected ? 'border-[#0A2723] bg-[#0A2723] text-white shadow-[0_6px_14px_rgba(10,39,35,.16)]' : 'border-[#D1AD7D80] bg-[#fffdf9] text-[#0A2723] hover:border-[#0A2723] hover:bg-[#0A27230d]'}`}
             >
@@ -45,7 +61,7 @@ export function BlogArchive({ posts }: BlogArchiveProps) {
 
       {filteredPosts.length > 0 ? (
         <div className="grid gap-5.5 md:grid-cols-2 xl:grid-cols-3">
-          {filteredPosts.map((post) => {
+          {currentPosts.map((post) => {
             const cover = post.category?.toUpperCase() ?? 'ARTIGO';
 
             return (
@@ -67,6 +83,41 @@ export function BlogArchive({ posts }: BlogArchiveProps) {
         </div>
       ) : (
         <p className="rounded-xl border border-dashed border-[#D1AD7D80] bg-[#fffdf9] px-6 py-9 text-[16px] text-[#0A2723]">Ainda não há artigos nesta categoria.</p>
+      )}
+
+      {filteredPosts.length > POSTS_PER_PAGE && (
+        <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label="Paginação dos artigos">
+          <button
+            type="button"
+            onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+            disabled={currentPage === 1}
+            className="cursor-pointer rounded-md border border-[#D1AD7D80] bg-[#fffdf9] px-3.5 py-2 text-[13px] font-semibold text-[#0A2723] transition disabled:cursor-not-allowed disabled:opacity-40 hover:not-disabled:border-[#0A2723] hover:not-disabled:bg-[#0A27230d]"
+          >
+            ← Anterior
+          </button>
+
+          {pageNumbers.map((page) => (
+            <button
+              key={page}
+              type="button"
+              onClick={() => setCurrentPage(page)}
+              aria-label={`Ir para a página ${page}`}
+              aria-current={page === currentPage ? 'page' : undefined}
+              className={`h-9 min-w-9 cursor-pointer rounded-md border px-2 text-[13px] font-semibold transition ${page === currentPage ? 'border-[#0A2723] bg-[#0A2723] text-white' : 'border-[#D1AD7D80] bg-[#fffdf9] text-[#0A2723] hover:border-[#0A2723] hover:bg-[#0A27230d]'}`}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            type="button"
+            onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+            disabled={currentPage === totalPages}
+            className="cursor-pointer rounded-md border border-[#D1AD7D80] bg-[#fffdf9] px-3.5 py-2 text-[13px] font-semibold text-[#0A2723] transition disabled:cursor-not-allowed disabled:opacity-40 hover:not-disabled:border-[#0A2723] hover:not-disabled:bg-[#0A27230d]"
+          >
+            Próxima →
+          </button>
+        </nav>
       )}
     </>
   );

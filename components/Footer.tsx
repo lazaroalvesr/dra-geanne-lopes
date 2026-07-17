@@ -2,6 +2,7 @@ import { AtSign } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { primaryOffice } from '../app/site-config';
+import { CurrentYear } from './CurrentYear';
 
 const officeLabel = `${primaryOffice.city} – ${primaryOffice.state}`;
 
@@ -11,7 +12,7 @@ export function Footer() {
       <Link className="font-['Playfair_Display'] text-[22px] font-bold" href="#inicio">
         <Image src="/assets/Logo-escuro.png" alt="Logo da Dra. Geanne Lopes" width={260} height={260} className="h-auto w-50 lg:w-50" />
       </Link>
-      <p className="m-0 text-[11px] leading-[1.6] text-[#cfd7df]">© {new Date().getFullYear()} Dra. Geanne Lopes — Advocacia e Consultoria. Todos os direitos reservados.<br />{officeLabel} • Atendimento presencial e on-line.</p>
+      <p className="m-0 text-[11px] leading-[1.6] text-[#cfd7df]">© <CurrentYear initialYear={new Date().getFullYear()} /> Dra. Geanne Lopes — Advocacia e Consultoria. Todos os direitos reservados.<br />{officeLabel} • Atendimento presencial e on-line.</p>
       <p className="m-0 text-[11px] text-[#cfd7df]">OAB/UF 000.000</p>
       <Link className="inline-flex items-center gap-1.5 text-[11px] text-[#cfd7df] transition hover:text-[#D1AD7D]" href="https://www.instagram.com/geanne_lopes/" target="_blank" rel="noreferrer"><AtSign size={14} /> Instagram</Link>
       <p className="m-0 text-[11px] text-[#cfd7df]">Desenvolvido por <Link href="https://www.lazaroalvesr.com/" target="_blank" rel="noreferrer">Lázaro Alves R</Link></p>

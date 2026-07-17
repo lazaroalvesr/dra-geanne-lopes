@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import type { SanityImageSource } from '@sanity/image-url';
 import { BlogArchive, type ArchivedPost } from '../../components/BlogArchive';
@@ -52,7 +53,15 @@ export default async function BlogPage() {
   return (
     <>
       <header className="flex items-center justify-between border-b border-[#D1AD7D33] bg-[#F3F3F3] px-5.5 py-5 md:px-[max(6vw,40px)] md:py-6">
-        <Link href="/" className="font-['Playfair_Display'] text-[21px] font-bold text-[#0A2723]">Dra. Geanne Lopes</Link>
+        <Link href="/" aria-label="Dra. Geanne Lopes — Início">
+          <Image
+            src="/assets/Logo-dra.png"
+            alt="Logo da Dra. Geanne Lopes"
+            width={260}
+            height={70}
+            className="h-auto w-50 xl:w-65"
+          />
+        </Link>
         <Link href="/" className="text-[14px] font-semibold text-[#0A2723]">← Voltar ao site</Link>
       </header>
       <main className="min-h-[65vh] bg-[#F3F3F3] px-5.5 py-18 md:px-[max(6vw,40px)] md:py-25">
