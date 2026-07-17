@@ -24,6 +24,7 @@ export function Header() {
   const navigationTimeoutRef = useRef<number | undefined>(undefined);
   const menuCloseTimeoutRef = useRef<number | undefined>(undefined);
   const lockedScrollPositionRef = useRef(0);
+  const pendingNavigationRef = useRef<string | null>(null);
 
   useEffect(() => {
     const updateHeader = () => {
@@ -89,6 +90,16 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (open || !pendingNavigationRef.current) return;
+
+    const href = pendingNavigationRef.current;
+    pendingNavigationRef.current = null;
+    const frame = window.requestAnimationFrame(() => navigateToSection(href));
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [open]);
+
   useEffect(() => () => {
     if (navigationTimeoutRef.current !== undefined) {
       window.clearTimeout(navigationTimeoutRef.current);
@@ -98,14 +109,13 @@ export function Header() {
     }
   }, []);
 
-  const closeMenu = (onClosed?: () => void) => {
+  const closeMenu = () => {
     if (!open || isClosing) return;
 
     setIsClosing(true);
     menuCloseTimeoutRef.current = window.setTimeout(() => {
       setOpen(false);
       setIsClosing(false);
-      if (onClosed) window.requestAnimationFrame(onClosed);
     }, MENU_ANIMATION_DURATION);
   };
 
@@ -118,43 +128,44 @@ export function Header() {
     setIsClosing(false);
     setOpen(true);
   };
+  function navigateToSection(href: string) {
+    if (navigationTimeoutRef.current !== undefined) {
+      window.clearTimeout(navigationTimeoutRef.current);
+    }
+
+    const section = document.querySelector<HTMLElement>(href);
+    const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 80;
+
+    if (section) {
+      const sectionPaddingTop = href === '#inicio'
+        ? 0
+        : Number.parseFloat(window.getComputedStyle(section).paddingTop) || 0;
+
+      window.scrollTo({
+        top: Math.max(0, section.getBoundingClientRect().top + window.scrollY + sectionPaddingTop - headerHeight - 24),
+        behavior: 'smooth',
+      });
+    }
+
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    navigationTimeoutRef.current = window.setTimeout(() => {
+      navigationTargetRef.current = null;
+      window.dispatchEvent(new Event('scroll'));
+    }, 2000);
+  }
+
   const handleNavigation = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     event.preventDefault();
     setActiveHref(href);
     navigationTargetRef.current = href;
 
-    if (navigationTimeoutRef.current !== undefined) {
-      window.clearTimeout(navigationTimeoutRef.current);
-    }
-
-    const scrollToSection = () => {
-      const section = document.querySelector<HTMLElement>(href);
-      const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 80;
-
-      if (section) {
-        const sectionPaddingTop = href === '#inicio'
-          ? 0
-          : Number.parseFloat(window.getComputedStyle(section).paddingTop) || 0;
-
-        window.scrollTo({
-          top: Math.max(0, section.getBoundingClientRect().top + window.scrollY + sectionPaddingTop - headerHeight - 24),
-          behavior: 'smooth',
-        });
-      }
-
-      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-      navigationTimeoutRef.current = window.setTimeout(() => {
-        navigationTargetRef.current = null;
-        window.dispatchEvent(new Event('scroll'));
-      }, 2000);
-    };
-
     if (open) {
-      closeMenu(scrollToSection);
+      pendingNavigationRef.current = href;
+      closeMenu();
       return;
     }
 
-    scrollToSection();
+    navigateToSection(href);
   };
 
   return (
