@@ -1,0 +1,32 @@
+# Dependências
+node_modules/
+
+# Next.js e arquivos gerados
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Variáveis de ambiente e credenciais locais
+.env
+.env.*
+.env.local
+!.env.example
+*.pem
+
+# Cobertura e logs
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Arquivos e caches locais
+.pnpm-store/
+.vercel/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
