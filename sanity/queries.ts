@@ -41,6 +41,7 @@ export const POST_BY_SLUG_QUERY = defineQuery(`
     "readingTime": estimatedReadingTime,
     publishedAt,
     mainImage,
+    "imageLqip": mainImage.asset->metadata.lqip,
     "imageAlt": mainImage.alt,
     "seo": {
       "title": coalesce(seo.title, title),

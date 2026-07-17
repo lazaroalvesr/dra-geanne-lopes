@@ -25,6 +25,7 @@ type BlogPost = {
   readingTime?: number;
   publishedAt?: string;
   mainImage?: SanityImageSource;
+  imageLqip?: string;
   imageAlt?: string;
   seo?: {
     title?: string;
@@ -94,7 +95,11 @@ export default async function BlogPostPage({ params }: PageProps) {
   ]);
   const relatedPosts = Array.from(new Map([...sameCategoryPosts, ...recentPosts].map((relatedPost) => [relatedPost._id, relatedPost])).values()).slice(0, 3);
 
-  const imageUrl = post.mainImage ? urlFor(post.mainImage).width(1600).height(900).fit('crop').url() : undefined;
+  // A própria CDN do Sanity já redimensiona, recorta e entrega WebP/AVIF.
+  // Assim evitamos uma segunda conversão pelo otimizador da Vercel na primeira visita.
+  const imageUrl = post.mainImage
+    ? urlFor(post.mainImage).width(1600).height(900).fit('crop').auto('format').quality(80).url()
+    : undefined;
   const publishedAt = post.publishedAt ? new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' }).format(new Date(post.publishedAt)) : undefined;
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -135,7 +140,20 @@ export default async function BlogPostPage({ params }: PageProps) {
             {publishedAt && <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#D1AD7D]" />}
             <span>Publicado por <strong className="font-semibold text-[#0A2723]">{post.authorName ?? 'Dra. Geanne Lopes'}</strong></span>
           </div>
-          {imageUrl && <div className="relative mb-11 aspect-video overflow-hidden rounded-xl"><Image src={imageUrl} alt={post.imageAlt ?? post.title} fill priority sizes="(max-width: 900px) 100vw, 900px" className="object-cover" /></div>}
+          {imageUrl && <div className="relative mb-11 aspect-video overflow-hidden rounded-xl bg-[#E7E1D8]">
+            <Image
+              src={imageUrl}
+              alt={post.imageAlt ?? post.title}
+              fill
+              preload
+              fetchPriority="high"
+              unoptimized
+              placeholder={post.imageLqip ? 'blur' : 'empty'}
+              blurDataURL={post.imageLqip}
+              sizes="(max-width: 900px) 100vw, 900px"
+              className="object-cover"
+            />
+          </div>}
           <div className="max-w-175 space-y-6 font-['Playfair_Display'] text-[19px] leading-[1.7] text-[#0A2723] md:text-[22px]">
             <PortableTextContent value={post.body} />
           </div>
