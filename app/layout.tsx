@@ -1,6 +1,21 @@
 import type { Metadata, Viewport } from 'next';
+import { DM_Sans, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { absoluteUrl, primaryOffice, siteUrl } from './site-config';
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-dm-sans',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  display: 'swap',
+  variable: '--font-playfair-display',
+});
 
 const locationLabel = `${primaryOffice.city} - ${primaryOffice.state}`;
 
@@ -47,12 +62,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
-      </head>
-      <body>{children}</body>
+      <body className={`${dmSans.variable} ${playfairDisplay.variable}`} style={{ fontFamily: 'var(--font-dm-sans)' }}>{children}</body>
     </html>
   );
 }

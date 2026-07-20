@@ -5,6 +5,7 @@ import { ContactSection } from '../components/ContactSection';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { HeroSection } from '../components/HeroSection';
+import { MissionSection } from '../components/MissionSection';
 import { PracticeAreasSection } from '../components/PracticeAreasSection';
 import { Testimonials } from '../components/Testimonials';
 import { WhatsAppButton } from '../components/WhatsAppButton';
@@ -35,6 +36,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <AboutSection />
+        <MissionSection />
         <PracticeAreasSection />
         <BlogSection />
         <Testimonials />

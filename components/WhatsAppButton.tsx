@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { contactDetails } from '../app/site-config';
 
 const HINT_DURATION = 4000;
 const HINT_INTERVAL = 20000;
@@ -31,7 +32,7 @@ export function WhatsAppButton() {
 
   return (
     <Link
-      href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20Dra.%20Geanne!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta."
+      href={`https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(contactDetails.whatsappMessage)}`}
       target="_blank"
       rel="noreferrer"
       aria-label="Agendar uma consulta pelo WhatsApp"

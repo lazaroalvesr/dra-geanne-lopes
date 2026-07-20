@@ -4,6 +4,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { type MouseEvent, useEffect, useRef, useState } from 'react';
+import { contactDetails } from '../app/site-config';
 
 const links = [
   ['Início', '#inicio'],
@@ -193,9 +194,9 @@ export function Header() {
       )}
       <nav id="main-menu" className={`${open ? `absolute right-0 top-full z-30 flex w-4/5 flex-col gap-6 bg-[#F3F3F3] px-7.5 pb-7 pt-9 shadow-[-16px_18px_34px_rgba(21,41,66,.13)] ${isClosing ? 'animate-[menu-slide-out_.36s_cubic-bezier(.2,.75,.25,1)_forwards]' : 'animate-[menu-slide-in_.36s_cubic-bezier(.2,.75,.25,1)_forwards]'} ${scrolled ? 'h-[calc(100dvh-64px)] md:h-[calc(100dvh-68px)]' : 'h-[calc(100dvh-76px)] md:h-[calc(100dvh-84px)]'}` : 'hidden'} xl:static xl:flex xl:h-auto xl:w-auto xl:flex-row xl:items-center xl:gap-8.75 xl:bg-transparent xl:p-0 xl:shadow-none`}>
         {links.map(([label, href]) => <Link className={`relative flex min-h-11 items-center py-2 text-[16px] text-[#0A2723] transition-colors duration-300 xl:min-h-0 xl:text-[15px] xl:after:absolute xl:after:bottom-0 xl:after:left-0 xl:after:h-px xl:after:w-full xl:after:origin-left xl:after:scale-x-0 xl:after:bg-[#D1AD7D] xl:after:transition-transform xl:after:duration-300 xl:after:ease-out ${activeHref === href ? 'text-[#D1AD7D] xl:after:scale-x-100' : ''}`} href={href} key={href} onClick={(event) => handleNavigation(event, href)}>{label}</Link>)}
-        <Link className="mt-auto flex w-full items-center justify-center gap-3 rounded-lg bg-[#0A2723] px-5 py-4 text-[15px] font-semibold text-white xl:hidden" href="#contato" onClick={(event) => handleNavigation(event, '#contato')}>Agendar consulta <ArrowUpRight size={20} /></Link>
+        <Link className="mt-auto flex w-full items-center justify-center gap-3 rounded-lg bg-[#0A2723] px-5 py-4 text-[15px] font-semibold text-white xl:hidden" href={`https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(contactDetails.whatsappMessage)}`} target="_blank" rel="noreferrer">Agendar consulta <ArrowUpRight size={20} /></Link>
       </nav>
-      <Link className="hidden items-center justify-center gap-5 rounded-lg bg-[#0A2723] px-4.75 py-3 text-[14px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#123A34] xl:flex" href="#contato" onClick={(event) => handleNavigation(event, '#contato')}>Agendar consulta <ArrowUpRight size={20} /> </Link>
+      <Link className="hidden items-center justify-center gap-5 rounded-lg bg-[#0A2723] px-4.75 py-3 text-[14px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#123A34] xl:flex" href={`https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(contactDetails.whatsappMessage)}`} target="_blank" rel="noreferrer">Agendar consulta <ArrowUpRight size={20} /> </Link>
     </header>
     {open && <div aria-hidden="true" className={scrolled ? 'h-16 md:h-17' : 'h-19 md:h-21'} />}
     </>
