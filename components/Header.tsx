@@ -178,6 +178,8 @@ export function Header() {
           alt='Logo da Dra Geanne Lope'
           width={260}
           height={260}
+          priority
+          sizes="(max-width: 767px) 200px, 260px"
           className={`h-auto w-50 origin-left transition-transform duration-300 xl:w-65 ${scrolled ? 'scale-90 xl:scale-100' : 'scale-100'}`}
         />
       </Link>

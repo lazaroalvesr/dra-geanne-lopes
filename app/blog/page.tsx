@@ -59,6 +59,8 @@ export default async function BlogPage() {
             alt="Logo da Dra. Geanne Lopes"
             width={260}
             height={70}
+            priority
+            sizes="(max-width: 767px) 200px, 260px"
             className="h-auto w-50 xl:w-65"
           />
         </Link>

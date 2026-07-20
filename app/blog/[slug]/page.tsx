@@ -125,6 +125,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             alt='Logo da Dra Geanne Lope'
             width={260}
             height={260}
+            priority
+            sizes="(max-width: 767px) 200px, 260px"
             className={`h-auto w-50 xl:w-65`}
           />
         </Link>
