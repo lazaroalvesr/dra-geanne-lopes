@@ -9,7 +9,7 @@ import { MissionSection } from '../components/MissionSection';
 import { PracticeAreasSection } from '../components/PracticeAreasSection';
 import { Testimonials } from '../components/Testimonials';
 import { WhatsAppButton } from '../components/WhatsAppButton';
-import { absoluteUrl, officeLocations, primaryOffice } from './site-config';
+import { absoluteUrl, contactDetails, officeLocations, primaryOffice } from './site-config';
 
 const legalServiceJsonLd = {
   '@context': 'https://schema.org',
@@ -17,9 +17,11 @@ const legalServiceJsonLd = {
   name: 'Dra. Geanne Lopes | Advocacia Previdenciária',
   description: `Advocacia previdenciária em ${primaryOffice.city} - ${primaryOffice.state}, com atendimento próximo, responsável e estratégico.`,
   url: absoluteUrl('/'),
+  telephone: contactDetails.phoneE164,
   sameAs: ['https://www.instagram.com/geanne_lopes/'],
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Praça 13 de Maio, 27, Centro',
     addressLocality: primaryOffice.city,
     addressRegion: primaryOffice.state,
     addressCountry: primaryOffice.country,
