@@ -23,10 +23,10 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ background: '#0A2723', bottom: 0, display: 'flex', height: '14px', left: 0, position: 'absolute', width: '100%' }} />
-        <div style={{ background: '#0A2723', bottom: 0, display: 'flex', height: '100%', position: 'absolute', right: 0, top: 0, width: '420px' }} />
-        <div style={{ border: '1px solid #D1AD7D', borderRadius: '999px', height: '630px', pointerEvents: 'none', position: 'absolute', right: '-150px', top: '-260px', width: '630px' }} />
+        <div style={{ background: '#0A2723', bottom: 0, display: 'flex', height: '100%', left: 0, position: 'absolute', top: 0, width: '420px' }} />
+        <div style={{ border: '1px solid #D1AD7D', borderRadius: '999px', height: '630px', left: '-150px', pointerEvents: 'none', position: 'absolute', top: '-260px', width: '630px' }} />
 
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', maxWidth: '700px', padding: '20px 0' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginLeft: '420px', maxWidth: '650px', padding: '20px 0' }}>
           <div style={{ color: '#D1AD7D', display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '3px' }}>ADVOCACIA PREVIDENCIÁRIA</div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', fontFamily: 'serif', fontSize: '78px', fontWeight: 700, letterSpacing: '-3px', lineHeight: 1.04 }}>Dra. Geanne Lopes</div>
@@ -34,7 +34,7 @@ export default function OpenGraphImage() {
           </div>
           <div style={{ display: 'flex', fontSize: '24px', fontWeight: 600 }}>Taiobeiras, MG · Atendimento presencial e on-line</div>
         </div>
-        <div style={{ bottom: 0, display: 'flex', height: '630px', overflow: 'hidden', position: 'absolute', right: 0, top: 0, width: '420px' }}>
+        <div style={{ bottom: 0, display: 'flex', height: '630px', left: 0, overflow: 'hidden', position: 'absolute', top: 0, width: '420px' }}>
           <img
             src={absoluteUrl('/assets/dra-geanne-hero.jpg')}
             alt=""
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
             height={630}
             style={{ height: '630px', objectFit: 'cover', objectPosition: 'center 35%', width: '420px' }}
           />
-          <div style={{ background: 'linear-gradient(90deg, rgba(10,39,35,.28), transparent 45%, rgba(10,39,35,.16))', inset: 0, position: 'absolute' }} />
+          <div style={{ background: 'linear-gradient(90deg, rgba(10,39,35,.12), transparent 45%, rgba(10,39,35,.3))', inset: 0, position: 'absolute' }} />
         </div>
       </div>
     ),
