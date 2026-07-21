@@ -1,4 +1,6 @@
-const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+// Em produção, metadados e imagens de compartilhamento devem sempre apontar
+// para a URL pública estável — nunca para um endereço temporário de deploy.
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dra-geanne-lopes.vercel.app';
 
 export const siteUrl = configuredSiteUrl.replace(/\/$/, '');
 
