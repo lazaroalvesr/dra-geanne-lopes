@@ -9,7 +9,7 @@ import { PortableTextContent } from '../../../components/PortableTextContent';
 import { RelatedArticles, type RelatedPost } from '../../../components/RelatedArticles';
 import { ShareButtons } from '../../../components/ShareButtons';
 import { WhatsAppButton } from '../../../components/WhatsAppButton';
-import { absoluteUrl } from '../../site-config';
+import { absoluteUrl, contactDetails } from '../../site-config';
 import { client } from '../../../sanity/lib/client';
 import { urlFor } from '../../../sanity/lib/image';
 import { POST_BY_SLUG_QUERY, RECENT_POSTS_EXCLUDING_CURRENT_QUERY, RELATED_POSTS_BY_CATEGORY_QUERY } from '../../../sanity/queries';
@@ -94,6 +94,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     client.fetch<RelatedPost[]>(RECENT_POSTS_EXCLUDING_CURRENT_QUERY, { postId: post._id }, { next: { revalidate: 60 } }),
   ]);
   const relatedPosts = Array.from(new Map([...sameCategoryPosts, ...recentPosts].map((relatedPost) => [relatedPost._id, relatedPost])).values()).slice(0, 3);
+  const whatsappMessage = `Olá, Dra. Geanne! Li o artigo “${post.title}” no site e gostaria de conversar sobre o meu caso.`;
+  const whatsappUrl = `https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   // A própria CDN do Sanity já redimensiona, recorta e entrega WebP/AVIF.
   // Assim evitamos uma segunda conversão pelo otimizador da Vercel na primeira visita.
@@ -163,7 +165,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <p className="mb-3 text-[11px] font-bold tracking-[1.3px] text-[#D1AD7D]">PRECISA DE ORIENTAÇÃO?</p>
             <h2 className="mb-3 font-['Playfair_Display'] text-[28px] leading-[1.15] text-[#0A2723] md:text-[34px]">Converse sobre o seu caso.</h2>
             <p className="mb-6 max-w-140 text-[16px] leading-[1.6] text-[#65706D]">Receba uma orientação jurídica cuidadosa e personalizada para entender os próximos passos.</p>
-            <Link href="/#contato" className="inline-flex items-center gap-3 rounded-lg bg-[#0A2723] px-5 py-3.5 text-[14px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#163d37]">Agende sua consulta <span aria-hidden="true">→</span></Link>
+            <a href={whatsappUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-lg bg-[#0A2723] px-5 py-3.5 text-[14px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#163d37]">Converse sobre este tema <span aria-hidden="true">→</span></a>
           </section>
           <ShareButtons title={post.title} />
         </article>
