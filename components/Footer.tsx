@@ -13,7 +13,7 @@ export function Footer() {
       <p className="m-0 text-[11px] leading-[1.6] text-[#cfd7df]">© <CurrentYear initialYear={new Date().getFullYear()} /> Dra. Geanne Lopes — Advocacia e Consultoria. Todos os direitos reservados.<br />{officeLabel} • Atendimento presencial e on-line.</p>
       <p className="m-0 text-[11px] text-[#cfd7df]">{contactDetails.oab}</p>
       <Link className="inline-flex items-center gap-1.5 text-[11px] text-[#cfd7df] transition hover:text-[#D1AD7D]" href="https://www.instagram.com/geanne_lopes/" target="_blank" rel="noreferrer"><AtSign size={14} /> Instagram</Link>
-      <Link className="inline-flex items-center gap-1.5 text-[11px] text-[#cfd7df] transition hover:text-[#D1AD7D]" href="https://www.tiktok.com/@geanne_lopes" target="_blank" rel="noreferrer"><Music2 size={14} /> TikTok</Link>
+      <Link className="inline-flex items-center gap-1.5 text-[11px] text-[#cfd7df] transition hover:text-[#D1AD7D]" href="https://www.tiktok.com/@geanne.lopes?_r=1&_t=ZS-98DqwgyZNBd" target="_blank" rel="noreferrer"><Music2 size={14} /> TikTok</Link>
       <p className="m-0 text-[11px] text-[#cfd7df]">Desenvolvido por <Link href="https://www.lazaroalvesr.com/" target="_blank" rel="noreferrer">Lázaro Alves R</Link></p>
     </footer>
   );
