@@ -4,6 +4,28 @@
   font-family: var(--font-playfair-display), Georgia, serif;
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #D1AD7D99 #F3F3F3;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F3F3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1AD7D99;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0A2723;
+}
+
 @keyframes reveal-item {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
