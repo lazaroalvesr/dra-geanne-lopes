@@ -38,8 +38,10 @@ export function ClientEffects() {
       window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
     };
 
-    document.addEventListener('click', handleSmoothScroll);
-    return () => document.removeEventListener('click', handleSmoothScroll);
+    // Captura o clique antes do Next tratar os links internos. Assim CTAs como
+    // “Conheça minha atuação” também usam a rolagem suave, sem acrescentar # à URL.
+    document.addEventListener('click', handleSmoothScroll, true);
+    return () => document.removeEventListener('click', handleSmoothScroll, true);
   }, []);
 
   return null;
