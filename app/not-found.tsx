@@ -26,7 +26,6 @@ export default function NotFound() {
         <div className="pointer-events-none absolute -right-35 -top-55 -z-10 h-150 w-150 rounded-full border border-[#D1AD7D55] bg-[#D1AD7D12]" />
         <div className="pointer-events-none absolute -bottom-55 -left-35 -z-10 h-110 w-110 rounded-full bg-[#0A272308]" />
         <div className="mx-auto w-full max-w-210 text-center">
-          <p className="mb-4 text-[11px] font-semibold tracking-[1.8px] text-[#D1AD7D]">ERRO 404</p>
           <h1 className="font-['Playfair_Display'] text-[clamp(44px,7vw,88px)] leading-[.98] tracking-[-2px]">
             Esta p&aacute;gina n&atilde;o foi encontrada.
           </h1>
