@@ -13,6 +13,13 @@ export const practiceAreas = [
     description: 'Defesa dos seus direitos quando a via administrativa não resolve a demanda.',
     featured: false,
   },
+  {
+    number: '03',
+    symbol: '◌',
+    title: 'Planejamento Previdenciário',
+    description: 'Análise estratégica para compreender possibilidades, organizar documentos e planejar o melhor momento para requerer o benefício.',
+    featured: false,
+  },
 ] as const;
 
 export const contactServiceOptions = [
