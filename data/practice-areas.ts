@@ -20,6 +20,13 @@ export const practiceAreas = [
     description: 'Análise estratégica para compreender possibilidades, organizar documentos e planejar o melhor momento para requerer o benefício.',
     featured: false,
   },
+  {
+    number: '04',
+    symbol: '∑',
+    title: 'Cálculos Previdenciários',
+    description: 'Elaboração e conferência de cálculos para analisar valores de benefícios e possíveis diferenças devidas.',
+    featured: false,
+  },
 ] as const;
 
 export const contactServiceOptions = [

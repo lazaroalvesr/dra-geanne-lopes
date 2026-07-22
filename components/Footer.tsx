@@ -8,7 +8,7 @@ const officeLabel = `${primaryOffice.city} – ${primaryOffice.state}`;
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-start gap-5 bg-[#0A2723] px-5.5 py-7.5 text-white md:flex-row md:items-center md:justify-between md:px-[max(6vw,40px)] md:py-9.25">
+    <footer className="flex flex-col items-start gap-5 bg-[#0A2723] px-5.5 py-7.5 text-white md:flex-row md:flex-wrap md:items-center md:justify-start md:gap-x-7 md:gap-y-4 md:px-[max(6vw,40px)] md:py-9.25 xl:flex-nowrap xl:justify-between">
       <FooterLogo />
       <p className="m-0 text-[11px] leading-[1.6] text-[#cfd7df]">© <CurrentYear initialYear={new Date().getFullYear()} /> Dra. Geanne Lopes — Advocacia e Consultoria. Todos os direitos reservados.<br />{officeLabel} • Atendimento presencial e on-line.</p>
       <p className="m-0 text-[11px] text-[#cfd7df]">{contactDetails.oab}</p>
