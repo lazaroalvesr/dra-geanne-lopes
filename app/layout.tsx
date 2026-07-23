@@ -46,7 +46,6 @@ export const metadata: Metadata = {
     title: `Dra. Geanne Lopes | Advocacia Previdenciária em ${locationLabel}`,
     description: `Advocacia previdenciária em ${locationLabel}, com atendimento presencial e on-line para todo o Brasil.`,
   },
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
   icons: {
     icon: [
       { url: '/assets/Icon.png', sizes: '32x32', type: 'image/png' },
