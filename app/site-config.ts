@@ -1,6 +1,4 @@
-// Em produção, metadados e imagens de compartilhamento devem sempre apontar
-// para a URL pública estável — nunca para um endereço temporário de deploy.
-const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dra-geanne-lopes.vercel.app';
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.geannelopes.adv.br';
 
 export const siteUrl = configuredSiteUrl.replace(/\/$/, '');
 
