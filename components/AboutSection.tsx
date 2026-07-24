@@ -4,7 +4,7 @@ import Link from 'next/link';
 export function AboutSection() {
   return (
     <section id="sobre" className="reveal-section grid bg-[#F3F3F3] px-6 pb-20 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-[clamp(70px,10vw,160px)] md:px-[max(5vw,55px)] md:py-27">
-      <div className="reveal-item relative order-2 flex min-h-90 items-end overflow-hidden rounded-2xl bg-[#0A2723] p-7 text-white md:order-0 md:min-h-135 md:p-10.5">
+      <div className="reveal-item relative order-2 flex min-h-90 lg:mt-0 mt-4 md:mt-0 items-end overflow-hidden rounded-2xl bg-[#0A2723] p-7 text-white md:order-0 md:min-h-135 md:p-10.5">
         <Image src="/assets/dra-geanne-about.jpg" alt="Dra. Geanne Lopes em seu escritório" fill sizes="(max-width: 767px) 100vw, 45vw" className="object-cover object-[center_36%]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(10,39,35,.75))]" />
         <p className="relative z-10 rounded-md bg-[#0A2723]/80 px-4 py-3 text-[11px] font-semibold leading-[1.7] tracking-[2px] shadow-[0_8px_20px_rgba(10,39,35,.22)] backdrop-blur-sm">ADVOCACIA<br />PREVIDENCIÁRIA</p>
