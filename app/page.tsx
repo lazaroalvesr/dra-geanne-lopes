@@ -26,7 +26,20 @@ const legalServiceJsonLd = {
     addressRegion: primaryOffice.state,
     addressCountry: primaryOffice.country,
   },
-  areaServed: [...officeLocations.map((office) => `${office.city} - ${office.state}`), 'Brasil'],
+  areaServed: [
+    ...officeLocations.map((office) => ({
+      '@type': 'City',
+      name: office.city,
+      containedInPlace: {
+        '@type': 'State',
+        name: office.state,
+      },
+    })),
+    {
+      '@type': 'Country',
+      name: 'Brasil',
+    },
+  ],
   availableLanguage: 'Português',
 };
 
